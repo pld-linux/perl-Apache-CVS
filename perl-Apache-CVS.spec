@@ -9,7 +9,7 @@ Summary:	Apache::CVS - method handler provide a web interface to CVS repositorie
 Summary(pl):	Apache::CVS - metoda udostêpniaj±ca interfejs WWW do repozytoriów CVS
 Name:		perl-Apache-CVS
 Version:	0.10
-Release:	1
+Release:	3
 # same as perl
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
@@ -18,15 +18,20 @@ Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 3.0.3-26
 %if %{with tests} 
-BuildRequires:	perl(Apache) >= 1.27
+BuildRequires:	perl(Apache::URI)
 BuildRequires:	perl-Rcs >= 1.03
 %endif
+# do not resolve: it is provided by both: apache-mod_perl and apache1-mod_perl
+Requires:	perl(Apache::URI)
+Requires:	perl-Graph
 Requires(post,preun):	apache
 Requires(post,preun):	grep
 Requires(preun):	fileutils
-Requires:	apache-mod_perl >= 1.27
+Requires:	apache1-mod_perl >= 1.27
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_noautoreqdep	'perl(Apache::URI)'
 
 %description
 Apache::CVS is a method handler that provide a web interface to CVS
