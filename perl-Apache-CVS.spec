@@ -53,7 +53,8 @@ najmniej CVSRoots na lokalny katalog CVS Root.
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/httpd
 sed -e 's/^\([^#]\)/#\1/' httpd.conf > $RPM_BUILD_ROOT%{_sysconfdir}/httpd/perl-Apache-CVS.conf
