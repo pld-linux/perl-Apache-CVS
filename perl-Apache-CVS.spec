@@ -19,6 +19,9 @@ BuildRequires:	rpm-perlprov >= 3.0.3-26
 BuildRequires:	perl(Apache) >= 1.27
 BuildRequires:	perl-Rcs >= 1.03
 %endif
+Requires(post,preun):	apache
+Requires(post,preun):	grep
+Requires(preun):	fileutils
 Requires:	apache-mod_perl >= 1.27
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -67,6 +70,7 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
+	umask 027
         grep -v "^Include.*perl-Apache-CVS.conf" /etc/httpd/httpd.conf > \
                 /etc/httpd/httpd.conf.tmp
         mv -f /etc/httpd/httpd.conf.tmp /etc/httpd/httpd.conf
