@@ -10,7 +10,8 @@ Summary(pl):	Apache::CVS - metoda udostêpniaj±ca interfejs WWW do repozytoriów C
 Name:		perl-Apache-CVS
 Version:	0.10
 Release:	1
-License:	GPL/Artistic
+# same as perl
+License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	9f5b0a4d240a53c309c5d8b099f00777
