@@ -8,12 +8,12 @@
 Summary:	Apache::CVS - method handler provide a web interface to CVS repositories
 Summary(pl):	Apache::CVS - metoda udostêpniaj±ca interfejs WWW do repozytoriów CVS
 Name:		perl-Apache-CVS
-Version:	0.08
-Release:	3
+Version:	0.10
+Release:	1
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	3e21626b232451f8d166adf20bd6af2a
+# Source0-md5:	9f5b0a4d240a53c309c5d8b099f00777
 BuildRequires:	perl-devel >= 5.6
 BuildRequires:	rpm-perlprov >= 3.0.3-26
 %if %{with tests} 
@@ -43,7 +43,8 @@ najmniej CVSRoots na lokalny katalog CVS Root.
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
 %build
-%{__perl} Makefile.PL
+%{__perl} Makefile.PL \
+	INSTALLDIRS=vendor
 %{__make}
 
 %{?with_tests:%{__make} test}
@@ -83,7 +84,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc Change*
-%{perl_sitelib}/%{pdir}/*.pm
-%{perl_sitelib}/%{pdir}/%{pnam}
+%{perl_vendorlib}/%{pdir}/*.pm
+%{perl_vendorlib}/%{pdir}/%{pnam}
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/perl-Apache-CVS.conf
 %{_mandir}/man3/*
