@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _without_tests - do not perform "make test"
+%bcond_without	tests	# don't perform "make test"
 #
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	Apache
@@ -16,7 +16,7 @@ Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version
 # Source0-md5:	3e21626b232451f8d166adf20bd6af2a
 BuildRequires:	perl-devel >= 5.6
 BuildRequires:	rpm-perlprov >= 3.0.3-26
-%if %{?_without_tests:0}%{!?_without_tests:1}
+%if %{with tests} 
 BuildRequires:	perl(Apache) >= 1.27
 BuildRequires:	perl-Rcs >= 1.03
 %endif
@@ -46,7 +46,7 @@ najmniej CVSRoots na lokalny katalog CVS Root.
 %{__perl} Makefile.PL
 %{__make}
 
-%{!?_without_tests:%{__make} test}
+%{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
