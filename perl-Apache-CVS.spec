@@ -9,7 +9,7 @@ Summary:	Apache::CVS - method handler provide a web interface to CVS repositorie
 #Summary(pl):	
 Name:		perl-Apache-CVS
 Version:	0.06
-Release:	2
+Release:	3
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
 Source0:	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -19,6 +19,7 @@ BuildRequires:	rpm-perlprov >= 3.0.3-26
 BuildRequires:	perl(Apache) >= 1.27
 BuildRequires:	perl-Rcs >= 1.03
 %endif
+Requires:	apache-mod_perl >= 1.27
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,12 +46,36 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/httpd
+sed -e 's/^\([^#]\)/#\1/' httpd.conf > $RPM_BUILD_ROOT%{_sysconfdir}/httpd/perl-Apache-CVS.conf
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+if [ -f /etc/httpd/httpd.conf ] && ! grep -q "^Include.*perl-Apache-CVS.conf" /etc/httpd/httpd.conf; then
+        echo "Include /etc/httpd/perl-Apache-CVS.conf" >> /etc/httpd/httpd.conf
+fi
+if [ -f /var/lock/subsys/httpd ]; then
+        /etc/rc.d/init.d/httpd restart 1>&2
+else
+        echo "Run \"/etc/rc.d/init.d/httpd start\" to start apache http daemon."
+fi
+
+%preun
+if [ "$1" = "0" ]; then
+        grep -v "^Include.*perl-Apache-CVS.conf" /etc/httpd/httpd.conf > \
+                /etc/httpd/httpd.conf.tmp
+        mv -f /etc/httpd/httpd.conf.tmp /etc/httpd/httpd.conf
+        if [ -f /var/lock/subsys/httpd ]; then
+                /etc/rc.d/init.d/httpd restart 1>&2
+        fi
+fi
+
 %files
 %defattr(644,root,root,755)
-%doc Change* httpd.conf
+%doc Change*
 %{perl_sitelib}/%{pdir}/*.pm
 %{perl_sitelib}/%{pdir}/%{pnam}
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/perl-Apache-CVS.conf
 %{_mandir}/man3/*
