@@ -9,7 +9,7 @@ Summary:	Apache::CVS - method handler provide a web interface to CVS repositorie
 Summary(pl):	Apache::CVS - metoda udostêpniaj±ca interfejs WWW do repozytoriów CVS
 Name:		perl-Apache-CVS
 Version:	0.08
-Release:	1
+Release:	3
 License:	GPL/Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
