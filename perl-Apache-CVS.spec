@@ -18,11 +18,10 @@ Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 3.0.3-26
 %if %{with tests} 
+# do not resolve: it is provided by both: apache-mod_perl and apache1-mod_perl
 BuildRequires:	perl(Apache::URI)
 BuildRequires:	perl-Rcs >= 1.03
 %endif
-# do not resolve: it is provided by both: apache-mod_perl and apache1-mod_perl
-Requires:	perl(Apache::URI)
 Requires:	perl-Graph
 Requires(post,preun):	apache
 Requires(post,preun):	grep
