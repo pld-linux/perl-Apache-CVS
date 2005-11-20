@@ -1,3 +1,5 @@
+# TODO
+# - so what is it apache2 or apache1 module? requires apache1, but installs files to apache2 dirs
 #
 # Conditional build:
 %bcond_without	tests	# don't perform "make test"
