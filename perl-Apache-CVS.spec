@@ -19,16 +19,16 @@ Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version
 # Source0-md5:	9f5b0a4d240a53c309c5d8b099f00777
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 3.0.3-26
-%if %{with tests} 
+%if %{with tests}
 # do not resolve: it is provided by both: apache-mod_perl and apache1-mod_perl
 BuildRequires:	perl(Apache::URI)
 BuildRequires:	perl-Rcs >= 1.03
 %endif
-Requires:	perl-Graph
 Requires(post,preun):	apache
 Requires(post,preun):	grep
 Requires(preun):	fileutils
 Requires:	apache1-mod_perl >= 1.27
+Requires:	perl-Graph
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -94,5 +94,5 @@ fi
 %doc Change*
 %{perl_vendorlib}/%{pdir}/*.pm
 %{perl_vendorlib}/%{pdir}/%{pnam}
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/perl-Apache-CVS.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd/perl-Apache-CVS.conf
 %{_mandir}/man3/*
