@@ -8,7 +8,7 @@
 %define		pdir	Apache
 %define		pnam	CVS
 Summary:	Apache::CVS - method handler provide a web interface to CVS repositories
-Summary(pl):	Apache::CVS - metoda udostêpniaj±ca interfejs WWW do repozytoriów CVS
+Summary(pl.UTF-8):   Apache::CVS - metoda udostÄ™pniajÄ…ca interfejs WWW do repozytoriÃ³w CVS
 Name:		perl-Apache-CVS
 Version:	0.10
 Release:	4
@@ -40,10 +40,10 @@ repositories. Please see "CONFIGURATION" to see what configuration
 options are available. To get started you'll at least need to set
 CVSRoots to your local CVS Root directory.
 
-%description -l pl
-Apache::CVS to metoda obs³uguj±ca udostêpniaj±ca interfejs WWW do
-repozytoriów CVS. Dostêpne opcje konfiguracji mo¿na znale¼æ w
-dokumentacji pod has³em "CONFIGURATION". Na pocz±tku trzeba ustawiæ co
+%description -l pl.UTF-8
+Apache::CVS to metoda obsÅ‚ugujÄ…ca udostÄ™pniajÄ…ca interfejs WWW do
+repozytoriÃ³w CVS. DostÄ™pne opcje konfiguracji moÅ¼na znaleÅºÄ‡ w
+dokumentacji pod hasÅ‚em "CONFIGURATION". Na poczÄ…tku trzeba ustawiÄ‡ co
 najmniej CVSRoots na lokalny katalog CVS Root.
 
 %prep
