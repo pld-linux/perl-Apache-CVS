@@ -8,7 +8,7 @@
 %define		pdir	Apache
 %define		pnam	CVS
 Summary:	Apache::CVS - method handler provide a web interface to CVS repositories
-Summary(pl.UTF-8):   Apache::CVS - metoda udostępniająca interfejs WWW do repozytoriów CVS
+Summary(pl.UTF-8):	Apache::CVS - metoda udostępniająca interfejs WWW do repozytoriów CVS
 Name:		perl-Apache-CVS
 Version:	0.10
 Release:	4
