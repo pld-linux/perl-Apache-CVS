@@ -3,10 +3,10 @@
 #
 # Conditional build:
 %bcond_without	tests	# don't perform "make test"
-#
-%include	/usr/lib/rpm/macros.perl
+
 %define		pdir	Apache
 %define		pnam	CVS
+%include	/usr/lib/rpm/macros.perl
 Summary:	Apache::CVS - method handler provide a web interface to CVS repositories
 Summary(pl.UTF-8):	Apache::CVS - metoda udostępniająca interfejs WWW do repozytoriów CVS
 Name:		perl-Apache-CVS
@@ -17,6 +17,7 @@ License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/%{pdir}/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	9f5b0a4d240a53c309c5d8b099f00777
+URL:		http://search.cpan.org/dist/Apache-CVS/
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 3.0.3-26
 %if %{with tests}
